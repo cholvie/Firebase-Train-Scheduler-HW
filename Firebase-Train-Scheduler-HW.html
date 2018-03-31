@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Train Schedules</title>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap CDN-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="assets/css/styles.css" media="screen">
+
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <br>
+
+    <!-- Jumbotron Title -->
+    <div class= "top">
+       <!-- <div class="jumbotron">  -->
+        <div class="row1">
+            <div class=>
+                <img class="img-responsive thumbnail center-block" src="assets\images\trains.jpg" alt="trainPic">
+            </div>
+            
+            <div class= "row2">            
+                <h2 class="text-center">Train Schedule</h2>
+                <h4 class="text-center">Arrivals / Departures</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Product -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+            
+                    <div class= "table">
+                        <table style="width:100%" table border="0">
+                            <col width="25%"> <col width="25%"> <col width="25%"> <col width="25%">
+                                <tr>
+                                    <th>
+                                        <h3 class="colHead1"> <strong>Train Name</strong> <span id="tblTrain"></span></h3>
+                                    </th>
+
+                                    <th>
+                                        <h3 class="colHead2"> <strong>Destination</strong> <span id="tblDestination"></span></h3>
+                                    </th> 
+
+                                    <th>
+                                        <h3 class="colHead3"> <strong>First Train</strong> <span id="tblFirstTrain"></span></h3>
+                                    </th>
+
+                                    <th>
+                                        <h3 class="colHead4"> <strong>Frequency</strong> <span id="tblFrequency"></span></h3>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <h5 class="train"> New York Blitztran <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="destined">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="1stTrain">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="frequent">       <span id="newYork"></span></h5>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <h5 class="train"> Cali Cross-Country Coaster <span id="Cali"></span></h5>
+                                    </td> 
+
+                                    <td>
+                                        <h5 class="destined">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="1stTrain">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="frequent">       <span id="newYork"></span></h5>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <h5 class="train"> DC Terminal Express <span id="dcTrain"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="destined">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="1stTrain">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="frequent">       <span id="newYork"></span></h5>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <h5 class="train"> Texas Transtrak  <span id="texas"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="destined">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="1stTrain">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="frequent">       <span id="newYork"></span></h5>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <h5 class="train"> Chi-Town Choo Choo Line <span id="chicago"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="destined">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="1stTrain">       <span id="newYork"></span></h5>
+                                    </td>
+
+                                    <td>
+                                        <h5 class="frequent">       <span id="newYork"></span></h5>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Make Your Bid -->
+<div class="container">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Your Train</h3>
+          </div>
+
+          <div class="panel-body">
+              <div class= "alert">Your train information has been saved.</div>
+
+            <form id= "trainForm">
+              <div class="form-group">
+                <label for="train-name">Train Name</label>
+                <input class="form-control" id="trainName" type="text" required>
+              </div>
+
+              <div class="form-group">
+                <label for="train-destination">Destination</label>
+                <input class="form-control" id="destination" type="text" required>
+              </div>
+
+              <div class="form-group">
+                <label for="first-train">First Train</label>
+                <input class="form-control" id="firstTrain" type="time">
+              </div>
+
+              <div class="form-group">
+                <label for="frequency">Frequency</label>
+                <input class="form-control" id="frequency" type="number">
+              </div>
+
+              <button class="btn btn-primary" id="submit-bid" type="submit">Submit</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+  <!-- Added Moment JS -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="javascript.js"></script>
+
+
+</body>
+
+  <!-- Script 
+
+  <script>
+    // Assume the following situations.
+
+    // (TEST 1)
+    // First Train of the Day is 3:00 AM
+    // Assume Train comes every 3 minutes.
+    // Assume the current time is 3:16 AM....
+    // What time would the next train be...? (Use your brain first)
+    // It would be 3:18 -- 2 minutes away
+
+    // (TEST 2)
+    // First Train of the Day is 3:00 AM
+    // Assume Train comes every 7 minutes.
+    // Assume the current time is 3:16 AM....
+    // What time would the next train be...? (Use your brain first)
+    // It would be 3:21 -- 5 minutes away
+
+
+    // ==========================================================
+
+    // Solved Mathematically
+    // Test case 1:
+    // 16 - 00 = 16
+    // 16 % 3 = 1 (Modulus is the remainder)
+    // 3 - 1 = 2 minutes away
+    // 2 + 3:16 = 3:18
+
+    // Solved Mathematically
+    // Test case 2:
+    // 16 - 00 = 16
+    // 16 % 7 = 2 (Modulus is the remainder)
+    // 7 - 2 = 5 minutes away
+    // 5 + 3:16 = 3:21
+
+    // Assumptions
+    var tFrequency = 3;
+
+    // Time is 3:30 AM
+    var firstTime = "03:30";
+
+    // First Time (pushed back 1 year to make sure it comes before current time)
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    // Time apart (remainder)
+    var tRemainder = diffTime % tFrequency;
+    console.log(tRemainder);
+
+    // Minute Until Train
+    var tMinutesTillTrain = tFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+  </script>
+
+</body>
+
+</html>
