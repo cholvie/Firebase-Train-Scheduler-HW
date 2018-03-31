@@ -9,8 +9,10 @@
   };
   firebase.initializeApp(config);
 
+  var trainDb = firebase.database();
+
   //reference message collection
-  var messagesRef = firebase.database().ref('messages');
+  var messagesRef = firebase.database().ref();
 
 //event listener for form submit
 document.getElementById('trainForm').addEventListener('submit', submitForm);
@@ -59,14 +61,47 @@ function getInputVal(id) {
 
 //save the message to firebase
 function saveMessage(trainName, destination, firstTrain, frequency){
-  var newMessagesRef = messagesRef.push();
-  newMessagesRef.set({
+  trainDb.ref().push({
     trainName: trainName,
     destination: destination,
     firstTrain: firstTrain,
     frequency: frequency
   });
+
+
 }
+  trainDb.ref().on("child_added", function(childSnapshot, prevChildKey) {
+
+  // Log everything that's coming out of snapshot
+  console.log("test");
+  console.log(childSnapshot);
+
+  console.log(childSnapshot.val().trainName);
+
+  console.log(childSnapshot.val().destination);
+
+  console.log(childSnapshot.val().firstTrain);
+
+  console.log(childSnapshot.val().frequency);
+
+
+ var trainName = childSnapshot.val().trainName;
+ var destination = childSnapshot.val().destination;
+ var firstTrain = childSnapshot.val().firstTrain;
+ var frequency = childSnapshot.val().frequency;
+
+  // Change the HTML to reflect
+
+  $("#trainTable > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" +
+  firstTrain + "</td><td>" + frequency + "</td></tr>");
+
+// Handle the errors
+
+}, function(errorObject) {
+
+  console.log("Errors handled: " + errorObject.code);
+
+});
 
 
 
